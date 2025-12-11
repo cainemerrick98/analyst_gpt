@@ -3,7 +3,7 @@ from .database import SessionDep, create_db_and_tables
 from contextlib import asynccontextmanager
 from sqlmodel import select
 from .return_models import Summary, KeyDate
-from database import Stocks, Summaries, KeyDates
+from .database import Stocks, Summaries, KeyDates, get_session
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

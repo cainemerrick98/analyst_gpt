@@ -11,7 +11,7 @@ class Stocks(SQLModel, table=True):
 class Summaries(SQLModel, table=True):
     id: Optional[int] = Field(primary_key=True, default=None)
     created: date
-    ticker: str = Field(foreign_key='stock.ticker')
+    ticker: str = Field(foreign_key='stocks.ticker')
     title: str
     body: str
     sentiment: str
@@ -19,7 +19,7 @@ class Summaries(SQLModel, table=True):
 class KeyDates(SQLModel, table=True):
     id: Optional[int] = Field(primary_key=True, default=None)
     date_: date
-    ticker: str = Field(foreign_key='stock.ticker')
+    ticker: str = Field(foreign_key='stocks.ticker')
     title: str
     importance_for_price: str
 
