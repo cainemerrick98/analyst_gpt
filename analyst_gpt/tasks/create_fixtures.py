@@ -15,6 +15,6 @@ if __name__ == '__main__':
     for company, ticker in companies:
         print(company)
         summary = summarise_stock_news(ticker, company)
-        with open(f'./tasks/test_data/{company}.pkl', 'wb') as f:
+        with open(f'../app/test_data/{company}.pkl', 'wb') as f:
             f.write(pickle.dumps(summary))
 
