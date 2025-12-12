@@ -1,17 +1,30 @@
 import pytest
 from fastapi.testclient import TestClient
 from sqlmodel import Session, SQLModel, create_engine
+from sqlmodel.pool import StaticPool
 
 from .main import app, get_session
+from .load_test_data import load_stocks
 
 
 @pytest.fixture(name='session')
 def session_fixture():
     engine = create_engine(
-        'sqlite:///'
+        'sqlite:///',
+        connect_args = {"check_same_thread": False},
+        poolclass=StaticPool
     )
-    #TODO add fixture data
     SQLModel.metadata.create_all(engine)
+    
+    # Load the test data
+    stocks = load_stocks()
+    
+    with Session(engine) as session:
+        for stock in stocks:
+            session.add(stock)
+        session.commit()
+        
+
     with Session(engine) as session:
         yield session
 
@@ -34,7 +47,10 @@ def test_root(session: Session, client: TestClient):
     assert data['message'] == 'Hello World'
 
 def test_stocks(session: Session, client: TestClient):
-    ...
+    response = client.get('/stocks')
+    data = response.json()
+
+    assert len(data) == 6
 
 def test_summaries(session: Session, client: TestClient):
     ...
