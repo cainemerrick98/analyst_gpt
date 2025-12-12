@@ -20,6 +20,7 @@ def root():
 def stocks(session: SessionDep) -> list[Stocks]:
     statement = select(Stocks)
     stocks = session.exec(statement).all()
+    return stocks
 
 @app.get('/summaries')
 def summaries(session: SessionDep) -> list[Summary]:
