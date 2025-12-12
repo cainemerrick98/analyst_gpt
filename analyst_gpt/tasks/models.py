@@ -16,7 +16,7 @@ class KeyDate(BaseModel):
 
 class Summary(BaseModel):
     title: str = Field(description='A descriptive title for the summary')
-    body: str
+    body: str = Field(description='Use markdown formatting for body')
     key_dates: Optional[list[KeyDate]] = None
     sentiment: Sentiment = Field(description='The general or average sentiment across the articles reviewed')
     

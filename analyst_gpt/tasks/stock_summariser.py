@@ -7,7 +7,7 @@ load_dotenv()
 
 api_key = os.getenv('OPENAI_KEY')
 
-prompt_1 = """
+prompt = """
 System / Assistant persona:
 You are an analyst that produces concise, factual weekly news summaries about public companies. Use web_search to gather primary news sources and produce a structured Summary object that matches the JSON/Pydantic schema provided to the API via response_format.
 
