@@ -7,7 +7,7 @@ load_dotenv()
 
 api_key = os.getenv('OPENAI_KEY')
 
-prompt = """
+prompt_1 = """
 System / Assistant persona:
 You are an analyst that produces concise, factual weekly news summaries about public companies. Use web_search to gather primary news sources and produce a structured Summary object that matches the JSON/Pydantic schema provided to the API via response_format.
 
@@ -35,13 +35,13 @@ Content & quality rules (high-level):
 Output constraints (final message only):
 - The final message MUST be the JSON object that exactly matches the schema supplied via response_format (Summary with title, body, key_dates, sentiment).
 - Do NOT include any explanatory text outside that JSON object.
-
 """
 
-llm = OpenAI(api_key)
 
-def summarise_stock_news(ticker: str, company_name: str) -> Summary:
-    company_prompt = prompt.format(ticker=ticker, company_name=company_name)
+llm = OpenAI(api_key=api_key)
+
+def summarise_stock_news(ticker: str, company: str) -> Summary:
+    company_prompt = prompt.format(ticker=ticker, company=company)
     return llm.responses.parse(
         model='gpt-4.1',
         tools=[{ "type": "web_search_preview" }],

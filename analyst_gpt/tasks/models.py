@@ -12,11 +12,11 @@ class Sentiment(Enum):
 class KeyDate(BaseModel):
     date_: date 
     title: str = Field(description='A short name of the event this key date represents')
-    importance_for_price: str = Field(description='A short name of the event this key date represents')
+    importance_for_price: str = Field(description='This should detail why this event will affect the price and in what direction it is likely to do so')
 
 class Summary(BaseModel):
     title: str = Field(description='A descriptive title for the summary')
     body: str
-    key_dates = Optional[list[KeyDate]]
+    key_dates: Optional[list[KeyDate]] = None
     sentiment: Sentiment = Field(description='The general or average sentiment across the articles reviewed')
     
