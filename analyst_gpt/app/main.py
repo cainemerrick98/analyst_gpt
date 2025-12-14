@@ -25,11 +25,11 @@ def stocks(session: SessionDep) -> list[Stocks]:
 @app.get('/summaries')
 def summaries(session: SessionDep) -> list[Summary]:
     statement = select(Summaries, Stocks.company).join(Stocks)
-    summaries = session.exec(statement).all()
+    summaries = [Summary(company=result[1], **result[0].model_dump()) for result in session.exec(statement).all()]
     return summaries
 
 @app.get('/events')
 def events(session: SessionDep) -> list[KeyDate]:
     statement = select(KeyDates, Stocks.company).join(Stocks)
-    events = session.exec(statement).all()
+    events = [KeyDate(company=result[1], **result[0].model_dump()) for result in session.exec(statement).all()]
     return events

@@ -1,5 +1,4 @@
 from .stock_summariser import summarise_stock_news
-import pickle
 
 companies = [
     ('ASML', 'ASMLA'),
@@ -15,6 +14,6 @@ if __name__ == '__main__':
     for company, ticker in companies:
         print(company)
         summary = summarise_stock_news(ticker, company)
-        with open(f'../app/test_data/{company}.pkl', 'wb') as f:
-            f.write(pickle.dumps(summary))
+        with open(f'./app/test_data/{company}.json', 'w') as f:
+            f.write(summary.model_dump_json())
 
