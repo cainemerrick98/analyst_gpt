@@ -23,7 +23,7 @@ def load_stocks() -> list[Stocks]:
 def load_summaries_and_events() -> list[tuple[Summaries, KeyDates]]:
     parsed_model_outputs = []
     for company, ticker in companies.items():
-        with open(f'./test_data/{company}.json', 'r') as f:
+        with open(f'./app/test_data/{company}.json', 'r') as f:
             model_output = json.loads(f.read())
 
         summary = Summaries(

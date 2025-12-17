@@ -1,13 +1,29 @@
 from fastapi import FastAPI
 from .database import SessionDep, create_db_and_tables
 from contextlib import asynccontextmanager
-from sqlmodel import select
+from sqlmodel import select, Session
 from .return_models import Summary, KeyDate
-from .database import Stocks, Summaries, KeyDates, get_session
+from .database import Stocks, Summaries, KeyDates, engine
+from .load_test_data import load_stocks, load_summaries_and_events
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_db_and_tables()
+    
+    # Seed database
+    with Session(engine) as session:
+        if len(session.exec(select(Stocks)).all()) == 0:
+            for stock in load_stocks():
+                session.add(stock)
+
+            for summary, events in load_summaries_and_events():
+                session.add(summary)
+                if events:
+                    for event in events:
+                        session.add(event)
+            
+            session.commit()
+
     yield
 
 app = FastAPI(lifespan=lifespan)
