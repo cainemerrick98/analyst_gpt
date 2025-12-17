@@ -1,10 +1,12 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from .database import SessionDep, create_db_and_tables
 from contextlib import asynccontextmanager
 from sqlmodel import select, Session
 from .return_models import Summary, KeyDate
 from .database import Stocks, Summaries, KeyDates, engine
 from .load_test_data import load_stocks, load_summaries_and_events
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -27,6 +29,18 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
+
+origins = [
+    'https://localhost'
+]
+
+CORSMiddleware(
+    app,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*']
+)
 
 @app.get('/')
 def root():
