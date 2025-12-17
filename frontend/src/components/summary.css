@@ -1,0 +1,12 @@
+.summary{
+    border-bottom: 1px solid white;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.summary:hover{
+    cursor: pointer;
+    background-color: #414141;
+    border-radius: 10px;
+    border:none
+}

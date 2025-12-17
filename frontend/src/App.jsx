@@ -27,7 +27,11 @@ function App() {
 
   return (
     <>
+    <div className='header'>
+      <h2>My Stock Tracker</h2>
+    </div>
       <div className='summary-list'>
+        <h1>Stock Summaries</h1>
         {summaries.map((summary, index) => (
           <Summary 
             key={index}

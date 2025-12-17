@@ -1,5 +1,18 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.summary-list{
+  max-width: 1280px;
+  max-height: 1800px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.header{
+  padding: 10px;
+  width: 100%;
+  background-color: lightcoral;
+  margin-bottom: 20px;
 }
