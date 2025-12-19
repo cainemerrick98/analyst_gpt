@@ -15,6 +15,7 @@ class Summaries(SQLModel, table=True):
     title: str
     body: str
     sentiment: str
+    key_points: str
 
 class KeyDates(SQLModel, table=True):
     id: Optional[int] = Field(primary_key=True, default=None)

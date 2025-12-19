@@ -12,6 +12,7 @@ class Summary(BaseModel):
     title: str
     body: str
     sentiment: str
+    key_points: str
 
 class KeyDate(BaseModel):
     date_: date

@@ -26,10 +26,8 @@ Tool usage rules:
 4. Do not produce the final JSON until you have processed search results and verified dates.
 
 Content & quality rules (high-level):
-- Consider only news/events materially related to the company.
 - Prefer primary sources (press releases, filings, reputable outlets).
 - For dates use ISO format YYYY-MM-DD.
-- If no relevant news is found, return an empty or null key_dates, a brief body stating "No material news found in the last 7 days", and set sentiment to "neutral".
 - Avoid hallucinated facts; if uncertain, cite the source in the evidence step (see below).
 
 Output constraints (final message only):

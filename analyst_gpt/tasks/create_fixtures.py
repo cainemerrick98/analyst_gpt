@@ -6,7 +6,8 @@ companies = [
     ('Rolls-Royce', 'RR'),
     ('Vestas Wind', 'VWDRY'),
     ('Close Brothers Group', 'CBG'),
-    ('NIO ADR', 'NIO')
+    ('NIO ADR', 'NIO'),
+    ('NuScale PowerCorp', 'SMR')
 ]
 
 if __name__ == '__main__':
