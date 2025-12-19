@@ -33,6 +33,7 @@ Content & quality rules (high-level):
 Output constraints (final message only):
 - The final message MUST be the JSON object that exactly matches the schema supplied via response_format (Summary with title, body, key_dates, sentiment).
 - Do NOT include any explanatory text outside that JSON object.
+- Key dates should ONLY be future dates
 
 Example Body:
 
