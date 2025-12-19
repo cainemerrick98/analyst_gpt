@@ -1,20 +1,34 @@
 import './App.css'
 import Summary from './components/summary'
 import { getStocks, getSummaries } from './services/api'
+import { useEffect, useState } from 'react';
 
 
 function App() {
 
-  const summaries = getSummaries()
-  const stocks = getStocks()
+  const [summaries, setSummaries] = useState([]);
+  const [stocks, setStocks] = useState([]);
+
+  useEffect(() => {
+    async function loadData() {
+      const summariesData = await getSummaries();
+      const stocksData = await getStocks();
+
+      setSummaries(summariesData);
+      setStocks(stocksData);
+    }
+
+    loadData();
+  }, []);
+
 
   return (
     <>
     <div className='header'>
       <h2>My Stock Tracker</h2>
     </div>
+      <h1>Stock Summaries</h1>
       <div className='summary-list'>
-        <h1>Stock Summaries</h1>
         {summaries.map((summary, index) => (
           <Summary 
             key={index}

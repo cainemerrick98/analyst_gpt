@@ -31,7 +31,6 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: linear-gradient(to bottom, transparent, #2a2a2a);
 }
 
 .summary.expanded::after {
@@ -46,14 +45,14 @@
     min-width:25px;
 }
 
-.circle.Positive {
+.circle.positive {
     background-color: rgb(0, 178, 0);
 }
 
-.circle.Neutral {
+.circle.neutral {
     background-color: rgb(230, 230, 18);
 }
 
-.circle.Negative {
+.circle.negative {
     background-color: red;
 }
