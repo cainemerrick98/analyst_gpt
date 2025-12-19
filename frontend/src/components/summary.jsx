@@ -1,5 +1,6 @@
 import './summary.css'
 import { useState } from 'react'
+import { parse } from 'marked'
 
 function Summary({company, ticker, title, body, sentiment}){
     const [isCollapsed, setIsCollapsed] = useState(true)
@@ -15,7 +16,7 @@ function Summary({company, ticker, title, body, sentiment}){
         </div>
             <h2>{title}</h2>
             <h5>Sentiment: {sentiment}</h5>
-            <p>{body}</p>
+            <div dangerouslySetInnerHTML={{__html:parse(body)}}></div>
         </div>
     )
 }
