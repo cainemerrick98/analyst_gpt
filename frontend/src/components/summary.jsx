@@ -1,6 +1,13 @@
 import './summary.css'
 import { useState } from 'react'
-import { parse } from 'marked'
+import { marked } from 'marked'
+
+const renderer = new marked.Renderer()
+renderer.link = ({ href, title, text }) => {
+  const t = title ? ` title="${title}"` : ''
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer"${t}>${text}</a>`
+}
+marked.setOptions({ renderer })
 
 function Summary({company, ticker, title, body, sentiment, key_points}){
     const [isCollapsed, setIsCollapsed] = useState(true)
@@ -23,7 +30,7 @@ function Summary({company, ticker, title, body, sentiment, key_points}){
                     ))}
                 </ul>
                 :
-                <div dangerouslySetInnerHTML={{__html:parse(body)}}></div>
+                <div dangerouslySetInnerHTML={{__html:marked.parse(body)}}></div>
             }
         </div>
     )
