@@ -1,12 +1,59 @@
-.summary{
-    border-bottom: 1px solid white;
-    padding: 5px;
-    margin-bottom: 10px;
+.summary {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  max-height: 200px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, max-height 0.3s ease, background-color 0.2s ease;
+  overflow: hidden;
 }
 
-.summary:hover{
+.summary:hover {
     cursor: pointer;
-    background-color: #414141;
-    border-radius: 10px;
-    border:none
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+.summary.expanded {
+    max-height: 2000px;
+}
+
+.summary p {
+  line-height: 1.6;
+  opacity: 0.9;
+  white-space: pre-line;
+}
+
+.summary::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, #2a2a2a);
+}
+
+.summary.expanded::after {
+  display: none;
+}
+
+.circle {
+    opacity: 0.55;
+    font-size: 0.85rem;
+    border-radius:50%;
+    min-height:10px;
+    min-width:25px;
+}
+
+.circle.Positive {
+    background-color: rgb(0, 178, 0);
+}
+
+.circle.Neutral {
+    background-color: rgb(230, 230, 18);
+}
+
+.circle.Negative {
+    background-color: red;
 }
