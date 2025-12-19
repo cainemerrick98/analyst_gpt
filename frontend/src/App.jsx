@@ -37,6 +37,7 @@ function App() {
             title={summary.title} 
             body={summary.body} 
             sentiment={summary.sentiment} 
+            key_points={summary.key_points}
             />
         ))}
 

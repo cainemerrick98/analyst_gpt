@@ -1,11 +1,9 @@
 .summary {
   background-color: #2a2a2a;
   border-radius: 12px;
-  max-height: 200px;
   padding: 16px 20px;
   margin-bottom: 16px;
   transition: transform 0.15s ease, box-shadow 0.15s ease, max-height 0.3s ease, background-color 0.2s ease;
-  overflow: hidden;
 }
 
 .summary:hover {

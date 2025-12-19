@@ -30,7 +30,7 @@ def load_summaries_and_events() -> list[tuple[Summaries, KeyDates]]:
         summary = Summaries(
             ticker=ticker, company=company, created=dt.datetime.today().date(),
             title=model_output['title'], body=model_output['body'], sentiment=model_output['sentiment'],
-            key_points=",".join([kp['text'] for kp in model_output['key_points']])
+            key_points="','".join([kp['text'] for kp in model_output['key_points']])
         )
         key_dates = [KeyDates(date_=dt.datetime.strptime(kd['date_'], '%Y-%m-%d'), ticker=ticker, company=company, title=kd['title'], importance_for_price=kd['importance_for_price'])
                      for kd in model_output['key_dates']] if model_output['key_dates'] else None
