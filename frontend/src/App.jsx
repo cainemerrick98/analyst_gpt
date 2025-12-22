@@ -1,5 +1,6 @@
 import './App.css'
 import Summary from './components/summary'
+import Calendar from './components/calendar';
 import { getStocks, getSummaries } from './services/api'
 import { useEffect, useState } from 'react';
 
@@ -59,7 +60,7 @@ function App() {
     <div 
       hidden={selectedTab == 'Calendar' ? false : true}
       className='calendar-container'>
-        Calendar
+        <Calendar></Calendar>
     </div>
     <div 
       hidden={selectedTab == 'Stocks' ? false : true}
