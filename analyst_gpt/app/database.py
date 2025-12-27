@@ -2,6 +2,7 @@ from typing import Annotated, Optional
 from fastapi import Depends
 from sqlmodel import Field, Session, SQLModel, create_engine
 from datetime import date
+import os
 
 class Stocks(SQLModel, table=True):
     ticker: str = Field(primary_key=True)
@@ -23,6 +24,9 @@ class KeyDates(SQLModel, table=True):
     ticker: str = Field(foreign_key='stocks.ticker')
     title: str
     importance_for_price: str
+
+
+os.makedirs(os.path.dirname("../data/database.db"), exist_ok=True)
 
 
 sqlite_file_name = 'data/database.db'
