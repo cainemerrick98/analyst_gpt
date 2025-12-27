@@ -1,1 +1,1 @@
-*/10 * * * * cd /app && python -m tasks.run_summariser
+0 2 * * 1 cd /app && python -m tasks.run_summariser

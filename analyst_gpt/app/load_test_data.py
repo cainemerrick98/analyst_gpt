@@ -12,6 +12,7 @@ companies = {
     'NuScale PowerCorp': 'SMR'
 }
 
+
 def load_stocks() -> list[Stocks]:
     stocks = []
 
