@@ -21,3 +21,10 @@ EXPOSE 8000
 
 # Default command = API
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Install supercronic
+ADD https://github.com/aptible/supercronic/releases/latest/download/supercronic-linux-amd64 /usr/local/bin/supercronic
+RUN chmod +x /usr/local/bin/supercronic
+
+# Copy crontab
+COPY crontab /app/crontab
