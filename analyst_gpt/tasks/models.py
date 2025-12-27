@@ -3,7 +3,6 @@ from typing import Optional
 from datetime import date
 from enum import Enum
 
-
 class Sentiment(Enum):
     NEGATIVE = 'negative'
     NEUTRAL = 'neutral'
