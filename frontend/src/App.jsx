@@ -19,7 +19,7 @@ function App() {
 
       setSummaries(summariesData);
       setStocks(stocksData);
-      setEvents(eventsData)
+      setEvents(eventsData);
     }
 
     loadData();
@@ -63,7 +63,9 @@ function App() {
     <div 
       hidden={selectedTab == 'Calendar' ? false : true}
       className='calendar-container'>
-        <Calendar/>
+        <Calendar
+          events={events}
+        />
     </div>
     <div 
       hidden={selectedTab == 'Stocks' ? false : true}

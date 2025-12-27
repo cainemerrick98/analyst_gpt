@@ -1,10 +1,13 @@
+import './event.css'
 
-function Event({ticker, title, company, date_, importance_for_price}){
+function Event({event, onClick}){
     return (
-        <div className="event">
-            {ticker}: {title}
+        <div className="event" onClick={() => onClick(event)}>
+            {event.ticker}: {event.title}
         </div>
     )
 }
+
+
 
 export default Event

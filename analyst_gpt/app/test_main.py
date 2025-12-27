@@ -58,18 +58,17 @@ def test_stocks(session: Session, client: TestClient):
     response = client.get('/stocks')
     data = response.json()
 
-    assert len(data) == 6
+    assert len(data) == 7
 
 def test_summaries(session: Session, client: TestClient):
     response = client.get('/summaries')
     data = response.json()
 
-    assert len(data) == 6
+    assert len(data) == 7
 
 def test_events(session: Session, client: TestClient):
     response = client.get('/events')
     data = response.json()
-
     # I dont know how many events the test run created
     # It doesnt really matter
     assert len(data) >= 6

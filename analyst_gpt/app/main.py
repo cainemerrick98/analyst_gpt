@@ -4,7 +4,7 @@ from .database import SessionDep, create_db_and_tables
 from contextlib import asynccontextmanager
 from sqlmodel import select, Session
 from .return_models import Summary, KeyDate
-from .database import Stocks, Summaries, KeyDates, engine
+from .database import Stocks, Summaries, KeyDates, engine, get_session
 from .load_test_data import load_stocks, load_summaries_and_events
 
 

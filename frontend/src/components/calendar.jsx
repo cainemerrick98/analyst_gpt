@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react"
 import './calendar.css'
 import Event from "./event"
+import EventModal from "./eventModal"
 
 const currentMonthStart = new Date()
 currentMonthStart.setDate(1)
@@ -8,6 +9,7 @@ currentMonthStart.setDate(1)
 
 function Calendar({events}){
     const [monthStart, setMonthStart] = useState(currentMonthStart)
+    const [selectedEvent, setSelectedEvent] = useState(null)
 
     const daysAndEvents = useMemo(() => {
         const daysAndEvents = {}
@@ -27,31 +29,51 @@ function Calendar({events}){
         return daysAndEvents
     }, [monthStart])
 
+    const changeMonthStart = (inc) => {
+        setMonthStart(prev => {
+            const d = new Date(prev)
+            d.setMonth(d.getMonth() + inc)
+            d.setDate(1)
+            return d
+        })
+    }
+
     return (
         <>
             <div className="calendar-container">
                 <div className="calendar-controls">
-                    <h2>{monthStart.toLocaleString(undefined, {month:'long'})}</h2>
+                    <div className="month-year-container">
+                        <span>{monthStart.toLocaleString(undefined, {year:'numeric', month:'long'})}</span>
+                    </div>
+                    <div className="button-container">
+                        <button onClick={() => changeMonthStart(-1)}>&lt;</button>
+                        <button onClick={() => changeMonthStart(1)}>&gt;</button>
+                    </div>
+                    
                 </div>
                 <div className="calendar">
-                    {Object.entries(daysAndEvents).map((date, index, events) => (
+                    {Object.entries(daysAndEvents).map(([date, date_events]) => (
                         <div
-                        key={date.toISOString}
+                        key={new Date(date).toISOString()}
                         >
-                            {date.getDate()}
-                            {events.map((event) => (
+                            {new Date(date).getDate()}
+                            {date_events.map((event, index) => (
                                 <Event
-                                    title={event.title}
-                                    ticker={event.ticker}
-                                    company={event.company}
-                                    date_={event.date_}
-                                    importance_for_price={event.importance_for_price}
+                                    key={index}
+                                    event={event}
+                                    onClick={setSelectedEvent}
                                 />
                             ))}
                         </div>
                     ))}
                 </div>
             </div>
+            {selectedEvent && (
+                <EventModal
+                    event={selectedEvent}
+                    onClose={() => setSelectedEvent(null)}
+                />
+            )}
         </>
     )
 }
