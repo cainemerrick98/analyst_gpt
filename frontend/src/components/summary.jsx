@@ -9,7 +9,7 @@ renderer.link = ({ href, title, text }) => {
 }
 marked.setOptions({ renderer })
 
-function Summary({company, ticker, title, body, sentiment, key_points}){
+function Summary({company, ticker, title, body, sentiment, key_points, date_created}){
     const [isCollapsed, setIsCollapsed] = useState(true)
 
     return (
@@ -17,9 +17,12 @@ function Summary({company, ticker, title, body, sentiment, key_points}){
         className={isCollapsed ? "summary" : "summary expanded"}
         onClick={() => setIsCollapsed(!isCollapsed)}
         >
-        <div style={{display:'flex', flexDirection:'row', gap:'10px'}}>
-            <div className={`circle ${sentiment}`}></div>
-            <span>{company}  ({ticker})</span>
+        <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+            <div style={{display:'flex', flexDirection:'row', gap:'10px'}} >
+                <div className={`circle ${sentiment}`}></div>
+                <span>{company}  ({ticker})</span>
+            </div>
+            <div>{date_created}</div>
         </div>
             <h2>{title}</h2>
             <h5>Sentiment: {sentiment}</h5>

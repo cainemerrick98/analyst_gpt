@@ -45,34 +45,33 @@ function App() {
         onClick={() => setSelectedTab('Stocks')}
       >Stocks</span>
     </div>
-    <div 
-      hidden={selectedTab == 'Summaries' ? false : true}
-      className='summary-list'>
-      {summaries.map((summary, index) => (
-        <Summary 
-          key={index}
-          company={summary.company} 
-          ticker={summary.ticker} 
-          title={summary.title} 
-          body={summary.body} 
-          sentiment={summary.sentiment} 
-          key_points={summary.key_points}
+    {selectedTab === 'Summaries' && (
+      <div className="summary-list">
+        {summaries.map((summary, index) => (
+          <Summary
+            key={index}
+            company={summary.company}
+            ticker={summary.ticker}
+            title={summary.title}
+            body={summary.body}
+            sentiment={summary.sentiment}
+            key_points={summary.key_points}
+            date_created={summary.created}
           />
-      ))}
-    </div>
-    <div 
-      hidden={selectedTab == 'Calendar' ? false : true}
-      className='calendar-container'>
-        <Calendar
-          events={events}
-        />
-    </div>
-    <div 
-      hidden={selectedTab == 'Stocks' ? false : true}
-      className='stocks-list'>
+        ))}
+      </div>
+    )}
+    {selectedTab === 'Calendar' && (
+      <div className="calendar-container">
+        <Calendar events={events} />
+      </div>
+    )}
+    {selectedTab === 'Stocks' && (
+      <div className="stocks-list">
         Stocks
-    </div>
-    </>
+      </div>
+    )}
+  </>
   )
 }
 
