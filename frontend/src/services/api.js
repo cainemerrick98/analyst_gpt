@@ -25,3 +25,16 @@ export async function getSummaries(){
     return [];
   }
 }
+
+export async function getEvents(){
+    try {
+        const res = await fetch(`${BASE_URL}events`);
+        if(res.ok){
+            return await res.json();
+        }else{
+            return []
+        }
+  } catch (err) {
+    return [];
+  }
+}

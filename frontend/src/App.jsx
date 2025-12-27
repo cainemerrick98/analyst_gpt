@@ -1,22 +1,25 @@
 import './App.css'
 import Summary from './components/summary'
 import Calendar from './components/calendar';
-import { getStocks, getSummaries } from './services/api'
+import { getStocks, getSummaries, getEvents } from './services/api'
 import { useEffect, useState } from 'react';
 
 
 function App() {
   const [summaries, setSummaries] = useState([]);
   const [stocks, setStocks] = useState([]);
+  const [events, setEvents] = useState([]);
   const [selectedTab, setSelectedTab] = useState('Summaries')
 
   useEffect(() => {
     async function loadData() {
       const summariesData = await getSummaries();
       const stocksData = await getStocks();
+      const eventsData = await getEvents();
 
       setSummaries(summariesData);
       setStocks(stocksData);
+      setEvents(eventsData)
     }
 
     loadData();
@@ -60,7 +63,7 @@ function App() {
     <div 
       hidden={selectedTab == 'Calendar' ? false : true}
       className='calendar-container'>
-        <Calendar></Calendar>
+        <Calendar/>
     </div>
     <div 
       hidden={selectedTab == 'Stocks' ? false : true}
