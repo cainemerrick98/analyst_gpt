@@ -17,7 +17,7 @@ function App() {
       const stocksData = await getStocks();
       const eventsData = await getEvents();
 
-      setSummaries(summariesData);
+      setSummaries(summariesData.reverse());
       setStocks(stocksData);
       setEvents(eventsData);
     }
